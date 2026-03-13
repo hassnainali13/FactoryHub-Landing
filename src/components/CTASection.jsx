@@ -33,7 +33,7 @@ export default function CTASection() {
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => window.open("https://factory-hub.vercel.app/login", "_blank")}
+        onClick={() => window.location.href = "https://factory-hub.vercel.app/login"}
         className="bg-white text-blue-600 px-10 py-4 rounded-full font-bold shadow-lg hover:shadow-2xl transform transition-all duration-300"
       >
         Explore Now
