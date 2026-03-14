@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import videoFile from "../assets/intro-video.mp4";
+import desktopVideo from "../assets/intro-video.mp4";   // Desktop version
+import mobileVideo from "../assets/intro-video-mobile.mp4"; // Mobile version
 
 export default function SplashVideo({ onFinish }) {
   const [show, setShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoSrc, setVideoSrc] = useState(desktopVideo);
 
   useEffect(() => {
+    // Detect mobile
+    const isMobile = window.innerWidth <= 768; // 768px se chhote screen ko mobile consider kar rahe
+    setVideoSrc(isMobile ? mobileVideo : desktopVideo);
+
+    // Check if already played in this tab
     if (sessionStorage.getItem("videoPlayed")) {
       setShow(false);
       onFinish();
@@ -25,13 +32,12 @@ export default function SplashVideo({ onFinish }) {
 
   return (
     <div className="fixed inset-0 flex justify-center items-center z-50 bg-white">
-      {/* background white until video loads */}
       <video
-        src={videoFile}
+        src={videoSrc}
         autoPlay
         muted
         preload="auto"
-        onCanPlayThrough={() => setVideoLoaded(true)} // jab video ready ho jaye
+        onCanPlayThrough={() => setVideoLoaded(true)}
         className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
       />
     </div>

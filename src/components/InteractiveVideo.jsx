@@ -4,8 +4,8 @@ import videoFile from "../assets/factory hub video.webm";
 
 export default function InteractiveVideo({ onBack }) {
   const videoRef = useRef(null);
-  const [skipIndicator, setSkipIndicator] = useState(null); // "+10s" or "-10s"
-  const [activeSide, setActiveSide] = useState(null); // "left" or "right"
+  const [skipIndicator, setSkipIndicator] = useState(null);
+  const [activeSide, setActiveSide] = useState(null);
 
   const showIndicator = (text, side) => {
     setSkipIndicator(text);
@@ -13,7 +13,7 @@ export default function InteractiveVideo({ onBack }) {
     setTimeout(() => {
       setSkipIndicator(null);
       setActiveSide(null);
-    }, 800); // fade out
+    }, 800);
   };
 
   const handleForward = () => {
@@ -41,22 +41,14 @@ export default function InteractiveVideo({ onBack }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-28 bg-gradient-to-b from-gray-50 to-white text-center relative overflow-hidden"
+      className="min-h-screen py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white text-center relative overflow-hidden px-4 sm:px-6 md:px-16"
     >
-      {/* Back Button */}
-      <button
-        onClick={onBack}
-        className="absolute top-8 left-8 bg-blue-500 text-white px-5 py-2 rounded-full shadow-lg hover:bg-blue-600 transition transform hover:scale-105"
-      >
-        Back
-      </button>
-
-      <h3 className="text-4xl md:text-5xl font-extrabold mb-16 text-gray-900">
+      <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-12 sm:mb-16 text-gray-900">
         Interactive Video
       </h3>
 
       {/* Video Container */}
-      <div className="relative max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500">
+      <div className="relative max-w-full sm:max-w-3xl md:max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500">
         <motion.video
           ref={videoRef}
           src={videoFile}
@@ -100,8 +92,10 @@ export default function InteractiveVideo({ onBack }) {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: activeSide === "left" ? -30 : 30, scale: 0.8 }}
               transition={{ duration: 0.3 }}
-              className={`absolute top-1/2 transform -translate-y-1/2 text-3xl font-bold text-white px-5 py-2 rounded-full pointer-events-none z-20 ${
-                activeSide === "left" ? "left-6 bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg" : "right-6 bg-gradient-to-l from-green-400 to-blue-500 shadow-lg"
+              className={`absolute top-1/2 transform -translate-y-1/2 text-2xl sm:text-3xl font-bold text-white px-4 sm:px-5 py-2 rounded-full pointer-events-none z-20 ${
+                activeSide === "left"
+                  ? "left-4 sm:left-6 bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg"
+                  : "right-4 sm:right-6 bg-gradient-to-l from-green-400 to-blue-500 shadow-lg"
               }`}
             >
               {skipIndicator}
@@ -110,9 +104,8 @@ export default function InteractiveVideo({ onBack }) {
         </AnimatePresence>
 
         {/* Description */}
-        <p className="text-gray-700 mt-6 p-6">
-          Live demonstration videos explaining workflows, features, and
-          step-by-step guidance for users.
+        <p className="text-gray-700 mt-4 sm:mt-6 mb-8 sm:mb-10 text-sm sm:text-base px-4 sm:px-6">
+          Live demonstration videos explaining workflows, features, and step-by-step guidance for users.
         </p>
       </div>
     </motion.section>

@@ -1,4 +1,3 @@
-// src/components/ProfessionalExplanation.jsx
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
@@ -32,17 +31,9 @@ export default function ProfessionalExplanation({ onBack }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen py-28 bg-gradient-to-b from-gray-50 to-white text-center relative overflow-hidden"
+      className="min-h-screen py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white text-center relative overflow-hidden px-4 sm:px-6 md:px-16"
     >
-      {/* Back Button */}
-      <button
-        onClick={onBack}
-        className="absolute top-8 left-8 bg-blue-500 text-white px-5 py-2 rounded-full shadow-lg hover:bg-blue-600 transition"
-      >
-        Back
-      </button>
-
-      <h3 className="text-4xl md:text-5xl font-extrabold mb-16 text-gray-900">
+      <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-12 sm:mb-16 text-gray-900">
         Workflow Overview
       </h3>
 
@@ -50,14 +41,16 @@ export default function ProfessionalExplanation({ onBack }) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-6 border border-gray-200 hover:shadow-blue-200 transition-shadow"
+        className="max-w-full sm:max-w-3xl md:max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 border border-gray-200 hover:shadow-blue-200 transition-shadow"
       >
         {/* Toggle Header */}
         <div
           onClick={() => setShowWorkflow(!showWorkflow)}
-          className="flex items-center justify-between cursor-pointer py-3 px-4 border-b border-gray-200 hover:bg-gray-50 rounded-xl transition"
+          className="flex items-center justify-between cursor-pointer py-3 px-3 sm:px-4 border-b border-gray-200 hover:bg-gray-50 rounded-xl transition"
         >
-          <h4 className="text-xl font-bold">Workflow Overview (Concise & Clear)</h4>
+          <h4 className="text-lg sm:text-xl md:text-2xl font-bold">
+            Workflow Overview (Concise & Clear)
+          </h4>
           <span className="text-blue-500">
             {showWorkflow ? <FaChevronUp size={18} /> : <FaChevronDown size={18} />}
           </span>
@@ -70,12 +63,12 @@ export default function ProfessionalExplanation({ onBack }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              className="mt-4 list-decimal list-inside space-y-3 text-gray-700 text-left"
+              className="mt-4 list-decimal list-inside space-y-2 sm:space-y-3 text-gray-700 text-left text-sm sm:text-base"
             >
               {workflowPoints.map((point, i) => (
                 <motion.li
                   key={i}
-                  whileHover={{ x: 5, color: "#2563EB" }} // small hover effect
+                  whileHover={{ x: 5, color: "#2563EB" }}
                   className="transition-colors cursor-default"
                 >
                   {point}
